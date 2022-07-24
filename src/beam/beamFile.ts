@@ -65,7 +65,7 @@ export default class BeamFile implements beamdasm.Beam {
   }
 
   readBeamFile(filePath: string) {
-    
+
     const buffer: Buffer = fs.readFileSync(filePath);
 
     const for1 = buffer.toString('utf8', 0, 4).toLowerCase();
@@ -451,7 +451,7 @@ export default class BeamFile implements beamdasm.Beam {
       while (nAtoms-- > 0) {
         const atomLength = buffer.readUInt8(offset);
         const atom = buffer.toString('utf8', offset + 1, offset + 1 + atomLength);
-        maxLength = ( atom.length > maxLength) ? atom.length : maxLength;
+        maxLength = (atom.length > maxLength) ? atom.length : maxLength;
         offset = offset + 1 + atomLength;
         this.atoms.push(atom);
       }
@@ -489,10 +489,10 @@ export default class BeamFile implements beamdasm.Beam {
 
   readObject(tag: number, buffer: Buffer, offset: number): any {
     switch (tag) {
-      case 70: 
-      {
-        return { data: "float8bytes", offset: offset + 8 };
-      }
+      case 70:
+        {
+          return { data: "float8bytes", offset: offset + 8 };
+        }
       case 97:
         return { data: buffer.readUInt8(offset), offset: offset + 1 };
       case 98:

@@ -18,23 +18,20 @@
 
 import BeamFile from './beamFile';
 
-class BeamCacheSingleton
-{
+class BeamCacheSingleton {
   private static _instance: BeamCacheSingleton = new BeamCacheSingleton();
 
-  private constructor()
-  {}
+  private constructor() { }
 
-  public static get Instance()
-  {
+  public static get Instance() {
     return this._instance;
   }
-  
+
   beamFilePath = '';
   beamFile: beamdasm.Beam | undefined = undefined;
 
   public getBeamFile(path: string): beamdasm.Beam {
-    if( this.beamFilePath === path ){
+    if (this.beamFilePath === path) {
       return this.beamFile as beamdasm.Beam;
     }
 

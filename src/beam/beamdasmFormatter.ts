@@ -21,23 +21,23 @@ import * as Tags from './tags';
 
 let lbl: (val: number) => string;
 
-let instructionHandlers: any = {
+const instructionHandlers: any = {
   // https://github.com/erlang/otp/blob/OTP-23.2.7/lib/compiler/src/beam_disasm.erl#L992
   'bs_match_string': (beamFile: beamdasm.Beam, obj: any) => {
     let str = ` ${termToString(beamFile, obj.params[0])}`;
     str += ` ${termToString(beamFile, obj.params[1])}`;
 
-    let size = Math.trunc((obj.params[2].data + 7)/8);
-    let offset = obj.params[3].data;
-    let arg = beamFile.StrT.substring(offset, offset + size);
+    const size = Math.trunc((obj.params[2].data + 7) / 8);
+    const offset = obj.params[3].data;
+    const arg = beamFile.StrT.substring(offset, offset + size);
 
     return str + ' "' + arg + '"';
   },
   // https://github.com/erlang/otp/blob/OTP-23.2.7/lib/compiler/src/beam_disasm.erl#L845
   'bs_put_string': (beamFile: beamdasm.Beam, obj: any) => {
-    let size = obj.params[0].data;
-    let offset = obj.params[1].data;
-    let arg = beamFile.StrT.substring(offset, offset + size);
+    const size = obj.params[0].data;
+    const offset = obj.params[1].data;
+    const arg = beamFile.StrT.substring(offset, offset + size);
 
     return ' "' + arg + '"';
   }
@@ -172,7 +172,7 @@ export class BeamdasmFormatter implements beamdasm.BeamFormatter {
   formatlitt(beamFile: beamdasm.Beam): string {
     let str = 'Literals: \n';
 
-    for( let i = 0; i < beamFile.literals.length; i++ ){
+    for (let i = 0; i < beamFile.literals.length; i++) {
       str += `\t${beamFile.literals[i]}\n`;
     }
 
