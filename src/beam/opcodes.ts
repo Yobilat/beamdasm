@@ -527,10 +527,36 @@ export const opcodes: any = {
     ar: 1,
     nm: 'recv_marker_use',
     doc: '**recv_marker_use** *Reference*\nSets the current receive cursor to the marker associated with the given Reference.'
+  },
+  //OTP 25
+  177: {
+    ar: 6,
+    nm: 'bs_create_bin',
+    doc: '**bs_create_bin** *Fail* *Alloc* *Live* *Unit* *Dst* *OpList*\nBuild a new binary using the binary syntax.'
+  },
+  178: {
+    ar: 3,
+    nm: 'call_fun2',
+    doc: '**call_fun2** *Tag* *Arity* *Func*\nCalls the fun Func with arity Arity.'
+  },
+  179: {
+    ar: 0,
+    nm: 'nif_start',
+    doc: '**nif_start**\nNo-op at start of each function declared in -nifs().'
+  },
+  180: {
+    ar: 1,
+    nm: 'badrecord',
+    doc: '**badrecord** *Value*\nRaises a {badrecord,Value} error exception.'
+  },
+  181: {
+    ar: 5,
+    nm: 'update_record',
+    doc: '**update_record** *Hint* *Size* *Src* *Dst* *Updates=[Index, Value]*\nSets Dst to a copy of Src with the update list applied.'
   }
 };
 
-export const MAX_OPCODE = 176;
+export const MAX_OPCODE = 181;
 
 export function get_doc(name: string): string {
   for (let opcode = 1; opcode <= MAX_OPCODE; opcode++) {
